@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-
+const PORT = 3003
 const MONGO_URI = "mongodb://localhost:27017/products";
 const seed = require('./seed')
-const Products = require('./models/ProductsModel')
+const Products = require('./models/ProductsModel');
+const app = require("./app");
 const db = mongoose.connection;
 
 mongoose.connect(
@@ -21,6 +22,10 @@ db.on("open", () => {
   console.log("Connection made!");
 });
 
+
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}`)
+})
 
 // Products.insertMany(seed,(err, products) => {
 //     if (err){ console.log(err)}
